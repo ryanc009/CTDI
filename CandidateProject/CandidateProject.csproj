@@ -159,6 +159,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartonController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="EntityModels\Carton.cs" />
     <Compile Include="CartonContext.cs" />
     <Compile Include="EntityModels\CartonDetail.cs" />
@@ -227,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

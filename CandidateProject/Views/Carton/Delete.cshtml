@@ -6,27 +6,48 @@
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to delete this carton and all it's equipment?</h3>
 <div>
-    <h4>Carton</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CartonNumber)
-        </dt>
+    <h3>
+        @Html.DisplayNameFor(model => model.CartonNumber): @Html.DisplayFor(model => model.CartonNumber)
+    </h3>
+    <table class="table" id="EquipmentList">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CartonDetails.FirstOrDefault().Equipment.ModelType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartonDetails.FirstOrDefault().Equipment.SerialNumber)
+            </th>
+            <th></th>
+        </tr>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @foreach (var item in Model.CartonDetails)
+        {
+            if (item.Equipment != null)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Equipment.ModelType.TypeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Equipment.SerialNumber)
+                    </td>
+                </tr>
+            }
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.CartonNumber)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    </table>
+    <hr />
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" />
+
         </div>
     }
 </div>
+

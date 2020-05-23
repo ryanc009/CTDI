@@ -1,13 +1,16 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
-</body>
-</html>
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    ViewBag.Title = "Error";
+}
+<div style="padding: 20px; color:red">
+
+    <h4>
+        An error has occurred and your request can't be processsed at this time.
+    </h4>
+    <p>
+        @ViewBag.Message
+    </p>
+    <h6>@Html.ActionLink("Go Back To Home Page", "Index", "Carton")</h6>
+    <br />
+    <br />
+</div>

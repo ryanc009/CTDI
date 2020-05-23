@@ -1,12 +1,21 @@
 ﻿@model CandidateProject.ViewModels.CartonDetailsViewModel
+@using System.Configuration;
 
 @{
     ViewBag.Title = "View Carton Equipment";
+    ViewBag.MessageTitle = "Confirm Equipment Removal";
+    ViewBag.CartonHasItems = Model.Equipment.Count();
 }
 
 <h2>View Carton Equipment</h2>
 
-<h3>@Html.DisplayFor(model => model.CartonNumber)</h3>
+<h3>@Html.DisplayNameFor(model => model.CartonNumber): @Html.DisplayFor(model => model.CartonNumber) (@ViewBag.CartonHasItems.ToString() of @ConfigurationManager.AppSettings["MaxItemsPerCarton"].ToString() items)</h3>
+
+@if (ViewBag.Message != null)
+{
+    <p class="text-danger">@ViewBag.MessageTitle : @ViewBag.Message</p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -16,7 +25,11 @@
             @Html.DisplayNameFor(model => model.Equipment.FirstOrDefault().SerialNumber)
         </th>
         <th>
-        </th>        
+            @if (ViewBag.CartonHasItems > 0)
+            {
+                @Html.ActionLink("Remove All", "RemoveEquipmentOnCarton", new { cartonId = Model.CartonId, equipmentId = 0 }, new { onclick = "return confirm('Are you sure you want to empty this carton?');" })
+            }
+        </th>
     </tr>
 
     @foreach (var item in Model.Equipment)
@@ -29,9 +42,11 @@
                 @Html.DisplayFor(modelItem => item.SerialNumber)
             </td>
             <td>
-                @Html.ActionLink("Remove", "RemoveEquipmentOnCarton", new { cartonId = Model.CartonId, equipmentId = item.Id })
+                @Html.ActionLink("Remove", "RemoveEquipmentOnCarton", new { cartonId = Model.CartonId, equipmentId = item.Id },
+                    new { onclick = "return confirm('Are you sure you want to remove equipment from carton?');" })
             </td>
         </tr>
     }
 
 </table>
+
