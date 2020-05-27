@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Current Carton List</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -20,14 +20,14 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.CartonNumber)
+            @Html.DisplayFor(modelItem => item.CartonNumber) (@item.ItemCount of @ViewBag.MaxEquipCount items)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-            @Html.ActionLink("AddEquipment", "AddEquipment", new { id = item.Id }) |
-            @Html.ActionLink("ViewCartonEquipment", "ViewCartonEquipment", new { id=item.Id })
+            @Html.ActionLink("Add Equipment", "AddEquipment", new { id = item.Id }) |
+            @Html.ActionLink("View Carton Equipment", "ViewCartonEquipment", new { id=item.Id })
         </td>
     </tr>
 }

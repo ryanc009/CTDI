@@ -2,11 +2,18 @@
 
 @{
     ViewBag.Title = "AddEquipment";
+    ViewBag.CartonHasItems = Model.Equipment.Count();
 }
 
-<h2>AddEquipment</h2>
+<h2>Add Equipment</h2>
+@Html.ActionLink("Back to List", "Index")
 
-<h3>@Html.DisplayFor(model => model.CartonNumber)</h3>
+<h3>Carton: &nbsp; @Html.DisplayFor(model => model.CartonNumber) (@Model.CartonEquipmentCount of @ViewBag.MaxEquipCount items)</h3>
+
+@if (ViewBag.Message != null)
+{
+    <p class="text-danger">@ViewBag.MessageTitle : @ViewBag.Message</p>
+}
 <table class="table">
     <tr>
         <th>
