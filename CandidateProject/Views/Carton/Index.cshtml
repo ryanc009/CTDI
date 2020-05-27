@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<CandidateProject.ViewModels.CartonViewModel>
-@using System.Configuration;
 
 @{
     ViewBag.Title = "Index";
@@ -21,7 +20,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.CartonNumber) (@item.ItemCount of @ConfigurationManager.AppSettings["MaxItemsPerCarton"].ToString() items)
+            @Html.DisplayFor(modelItem => item.CartonNumber) (@item.ItemCount of @ViewBag.MaxEquipCount items)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

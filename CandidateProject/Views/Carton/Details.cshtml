@@ -1,5 +1,4 @@
 ﻿@model CandidateProject.ViewModels.CartonViewModel
-@using System.Configuration;
 
 @{
     ViewBag.Title = "Details";
@@ -12,7 +11,7 @@
     <hr />
     <h3>
         @Html.DisplayNameFor(model => model.CartonNumber): @Html.DisplayFor(model => model.CartonNumber)
-        &nbsp;&nbsp;(@Model.ItemCount of @ConfigurationManager.AppSettings["MaxItemsPerCarton"].ToString() items)
+        &nbsp;&nbsp;(@Model.ItemCount of @ViewBag.MaxEquipCount items)
         &nbsp;&nbsp;@Html.ActionLink("Edit", "Edit", new { id = Model.Id })
     </h3>
 </div>

@@ -1,5 +1,4 @@
 ﻿@model CandidateProject.ViewModels.CartonDetailsViewModel
-@using System.Configuration;
 
 @{
     ViewBag.Title = "AddEquipment";
@@ -9,7 +8,7 @@
 <h2>Add Equipment</h2>
 @Html.ActionLink("Back to List", "Index")
 
-<h3>Carton: &nbsp; @Html.DisplayFor(model => model.CartonNumber) (@Model.CartonEquipmentCount of @ConfigurationManager.AppSettings["MaxItemsPerCarton"].ToString() items)</h3>
+<h3>Carton: &nbsp; @Html.DisplayFor(model => model.CartonNumber) (@Model.CartonEquipmentCount of @ViewBag.MaxEquipCount items)</h3>
 
 @if (ViewBag.Message != null)
 {
